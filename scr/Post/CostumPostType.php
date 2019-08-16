@@ -227,8 +227,7 @@ class CustomPostType
             return 'Please set true or false';
         }
     }
-
-
+    
     public function setMenuPosition(int $value)
     {
         $this->menuPosition = $value;
