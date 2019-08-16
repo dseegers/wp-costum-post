@@ -28,7 +28,8 @@ class CustomPostType
         $this->public = true;
         $this->showUi = true;
         $this->inMenu = true;
-        
+        $this->showInNavMenus = true;
+
     }
 
 //    Setting Labels
@@ -158,11 +159,21 @@ class CustomPostType
 
     public function setInMenu($value){
         if (is_bool($value)) {
-            $this->InMenu = $value;
+            $this->inMenu = $value;
         } else {
             return 'Please set true or false';
         }
     }
+
+    public function setShowInNavMenus($value){
+        if (is_bool($value)) {
+            $this->showInNavMenus = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
+
+
 
 //Set Arguments
 
@@ -187,7 +198,7 @@ class CustomPostType
             'public'              => $this->public,
             'show_ui'             => $this->showUi,
             'show_in_menu'        => $this->inMenu,
-            'show_in_nav_menus'   => true,
+            'show_in_nav_menus'   => $this->showInNavMenus,
             'show_in_admin_bar'   => true,
             'menu_position'       => 5,
             'can_export'          => true,
