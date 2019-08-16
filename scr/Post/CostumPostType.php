@@ -29,6 +29,13 @@ class CustomPostType
         $this->showUi = true;
         $this->inMenu = true;
         $this->showInNavMenus = true;
+        $this->taxonomy;
+        $this->showInAdminMenu = true;
+        $this->menuPosition = 5;
+        $this->canExport = true;
+        $this->hasArchive = true;
+        $this->excluseFromSearch = false;
+        $this->publiclyQueryable = true;
 
     }
 
@@ -131,6 +138,11 @@ class CustomPostType
 
 //    End setting labels
 
+    public function addTaxonomy($taxonomy)
+    {
+        $this->taxonomy = array_push($this->taxonomy, $taxonomy);
+    }
+
     public function setHierarchical($value)
     {
         if (is_bool($value)) {
@@ -140,7 +152,8 @@ class CustomPostType
         }
     }
 
-    public function setIsPublic($value){
+    public function setIsPublic($value)
+    {
         if (is_bool($value)) {
             $this->public = $value;
         } else {
@@ -149,7 +162,8 @@ class CustomPostType
     }
 
 
-    public function setshowUi($value){
+    public function setshowUi($value)
+    {
         if (is_bool($value)) {
             $this->showUi = $value;
         } else {
@@ -157,7 +171,8 @@ class CustomPostType
         }
     }
 
-    public function setInMenu($value){
+    public function setInMenu($value)
+    {
         if (is_bool($value)) {
             $this->inMenu = $value;
         } else {
@@ -165,7 +180,8 @@ class CustomPostType
         }
     }
 
-    public function setShowInNavMenus($value){
+    public function setShowInNavMenus($value)
+    {
         if (is_bool($value)) {
             $this->showInNavMenus = $value;
         } else {
@@ -173,6 +189,56 @@ class CustomPostType
         }
     }
 
+
+    public function setShowInAdminBar($value)
+    {
+        if (is_bool($value)) {
+            $this->showInAdminMenu = $value;
+        } else {
+            return 'Please set true or false';
+        }
+
+    }
+
+
+    public function setCanExport($value){
+        if (is_bool($value)) {
+            $this->canExport = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
+
+    public function setHasArchive($value){
+        if (is_bool($value)) {
+            $this->hasArchive = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
+
+
+    public function setExcluseFromSearch($value){
+        if (is_bool($value)) {
+            $this->excluseFromSearch = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
+
+    public function setPubliclyQueryable($value){
+        if (is_bool($value)) {
+            $this->publiclyQueryable = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
+
+
+    public function setMenuPosition(int $value)
+    {
+        $this->menuPosition = $value;
+    }
 
 
 //Set Arguments
@@ -189,7 +255,7 @@ class CustomPostType
                 implode(',', $this->support),
             ],
             // You can associate this CPT with a taxonomy or custom taxonomy.
-            'taxonomies'          => ['genres'],
+            'taxonomies'          => $this->taxonomy,
             /* A hierarchical CPT is like Pages and can have
             * Parent and child items. A non-hierarchical CPT
             * is like Posts.
@@ -199,12 +265,12 @@ class CustomPostType
             'show_ui'             => $this->showUi,
             'show_in_menu'        => $this->inMenu,
             'show_in_nav_menus'   => $this->showInNavMenus,
-            'show_in_admin_bar'   => true,
-            'menu_position'       => 5,
-            'can_export'          => true,
-            'has_archive'         => true,
-            'exclude_from_search' => false,
-            'publicly_queryable'  => true,
+            'show_in_admin_bar'   => $this->showInAdminMenu,
+            'menu_position'       => $this->menuPosition,
+            'can_export'          => $this->canExport,
+            'has_archive'         => $this->canArchive,
+            'exclude_from_search' => $this->excluseFromSearch,
+            'publicly_queryable'  => $this->publiclyQueryable,
             'capability_type'     => 'page',
         ];
 
