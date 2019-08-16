@@ -158,7 +158,7 @@ class CustomPostType
         }
     }
 
-    public function setshowUi($value)
+    public function setShowUi($value)
     {
         if (is_bool($value)) {
             $this->showUi = $value;
@@ -227,7 +227,7 @@ class CustomPostType
             return 'Please set true or false';
         }
     }
-    
+
     public function setMenuPosition(int $value)
     {
         $this->menuPosition = $value;
