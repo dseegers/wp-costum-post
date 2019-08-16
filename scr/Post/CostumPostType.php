@@ -47,10 +47,8 @@ class CustomPostType
 
     public function setDescription($description)
     {
-
         $this->description = $description;
     }
-
 
     public function setName($name)
     {
@@ -135,7 +133,7 @@ class CustomPostType
         $this->support = [$support];
     }
 
-//    End setting labels
+    //    End setting labels
 
     public function addTaxonomy($taxonomy)
     {
@@ -159,7 +157,6 @@ class CustomPostType
             return 'Please set true or false';
         }
     }
-
 
     public function setshowUi($value)
     {
@@ -199,7 +196,6 @@ class CustomPostType
 
     }
 
-
     public function setCanExport($value){
         if (is_bool($value)) {
             $this->canExport = $value;
@@ -215,7 +211,6 @@ class CustomPostType
             return 'Please set true or false';
         }
     }
-
 
     public function setExcluseFromSearch($value){
         if (is_bool($value)) {
@@ -239,8 +234,7 @@ class CustomPostType
         $this->menuPosition = $value;
     }
 
-
-//Set Arguments
+    //Set Arguments
 
     public function execute()
     {
@@ -275,6 +269,5 @@ class CustomPostType
 
         register_post_type($this->name, $this->args);
     }
-
 
 }
