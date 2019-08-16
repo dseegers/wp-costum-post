@@ -19,25 +19,44 @@ class CustomPostType
     protected $notFound;
     protected $notFoundInTrash;
 
+    public function __construct()
+    {
+        $this->labels = [];
+    }
+
+    public function setLabel($label, $name){
+
+        $this->labels[] = [$label  => __($name)];
+    }
+
+
     public function setName($name)
     {
         $this->name = $name;
+
+        $this->labels[] = ['name' => _x($this->name)];
+
     }
 
-    public function setSungularName($singularName)
+    public function setSingularName($singularName)
     {
         $this->singularName = $singularName;
+
+        $this->labels[] = ['singular_name' => _x($this->singularName)];
     }
 
     public function setMenuName($menuName)
     {
         $this->menuName = $menuName;
+
+        $this->labels[] = ['menu_name' => __($this->menuName)];
     }
 
     public function setPatentIdemColon($patentIdemColon)
     {
 
         $this->patentIdemColon = $patentIdemColon;
+        $this->setLabel('parent_item_colon', $this->patentIdemColon);
 
     }
 
@@ -45,6 +64,7 @@ class CustomPostType
     {
 
         $this->allItems = $allItems;
+        
 
     }
 
@@ -95,8 +115,6 @@ class CustomPostType
     {
         $this->notFoundInTrash = $notFoundInTrash;
     }
-
-   
 
 
 }
