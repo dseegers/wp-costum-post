@@ -29,7 +29,6 @@ class CustomPostType
         $this->showUi = true;
         $this->inMenu = true;
         $this->showInNavMenus = true;
-        $this->taxonomy;
         $this->showInAdminMenu = true;
         $this->menuPosition = 5;
         $this->canExport = true;
