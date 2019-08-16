@@ -18,11 +18,17 @@ class CustomPostType
     protected $searchItems;
     protected $notFound;
     protected $notFoundInTrash;
+    protected $hierarchical;
 
     public function __construct()
     {
         $this->labels = [];
-
+        $this->support = [];
+        $this->hierarchical = false;
+        $this->public = true;
+        $this->showUi = true;
+        $this->inMenu = true;
+        
     }
 
 //    Setting Labels
@@ -32,7 +38,8 @@ class CustomPostType
         $this->labels[] = [$label => __($name)];
     }
 
-    public function setDescription($description){
+    public function setDescription($description)
+    {
 
         $this->description = $description;
     }
@@ -116,7 +123,46 @@ class CustomPostType
         $this->setLabel('not_found_in_trash', $this->notFoundInTrash);
     }
 
+    public function setSupport($support)
+    {
+        $this->support = [$support];
+    }
+
 //    End setting labels
+
+    public function setHierarchical($value)
+    {
+        if (is_bool($value)) {
+            $this->hierarchical = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
+
+    public function setIsPublic($value){
+        if (is_bool($value)) {
+            $this->public = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
+
+
+    public function setshowUi($value){
+        if (is_bool($value)) {
+            $this->showUi = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
+
+    public function setInMenu($value){
+        if (is_bool($value)) {
+            $this->InMenu = $value;
+        } else {
+            return 'Please set true or false';
+        }
+    }
 
 //Set Arguments
 
@@ -129,14 +175,7 @@ class CustomPostType
             'labels'              => $this->labels,
             // Features this CPT supports in Post Editor
             'supports'            => [
-                'title',
-                'editor',
-                'excerpt',
-                'author',
-                'thumbnail',
-                'comments',
-                'revisions',
-                'custom-fields',
+                implode(',', $this->support),
             ],
             // You can associate this CPT with a taxonomy or custom taxonomy.
             'taxonomies'          => ['genres'],
@@ -144,10 +183,10 @@ class CustomPostType
             * Parent and child items. A non-hierarchical CPT
             * is like Posts.
             */
-            'hierarchical'        => false,
-            'public'              => true,
-            'show_ui'             => true,
-            'show_in_menu'        => true,
+            'hierarchical'        => $this->hierarchical,
+            'public'              => $this->public,
+            'show_ui'             => $this->showUi,
+            'show_in_menu'        => $this->inMenu,
             'show_in_nav_menus'   => true,
             'show_in_admin_bar'   => true,
             'menu_position'       => 5,
@@ -157,6 +196,8 @@ class CustomPostType
             'publicly_queryable'  => true,
             'capability_type'     => 'page',
         ];
+
+        register_post_type($this->name, $this->args);
     }
 
 
