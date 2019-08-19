@@ -1,7 +1,18 @@
 {
+  "name": "dseegers/wp-costum-post",
+  "description": "Make costum post really easy",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Daan Seegers",
+      "email": "daan@raow.nl"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Flx\\CP\\": "src"
     }
+  },
+  "require": {
   }
 }
