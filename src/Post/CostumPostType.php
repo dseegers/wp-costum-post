@@ -260,7 +260,7 @@ class CustomPostType
             'show_in_admin_bar'   => $this->showInAdminMenu,
             'menu_position'       => $this->menuPosition,
             'can_export'          => $this->canExport,
-            'has_archive'         => $this->canArchive,
+            'has_archive'         => $this->hasArchive,
             'exclude_from_search' => $this->excluseFromSearch,
             'publicly_queryable'  => $this->publiclyQueryable,
             'capability_type'     => 'page',
